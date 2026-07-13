@@ -3,84 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Metadata Guide</title>
+    <title>Strezless Nexus</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; }
-        label { font-weight: bold; display: block; margin-top: 10px; }
-        input { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; }
-        button { background-color: #28a745; color: white; padding: 10px 15px; border: none; cursor: pointer; }
-        button:hover { background-color: #218838; }
-        .saved-data { margin-top: 20px; padding: 15px; background-color: #f8f9fa; border: 1px solid #ddd; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
+        h1, h2 { text-align: center; color: #2c3e50; }
+        .form-container, .export-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-container { border-left: 5px solid #3498db; }
+        .export-container { border-left: 5px solid #2ecc71; text-align: center; }
+        input { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box;}
+        button, .export-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; box-sizing: border-box;}
+        button { background: #3498db; }
+        button:hover { background: #2980b9; }
+        .export-btn { background: #2ecc71; }
+        .section-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px;}
+        .track-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
+        .card-actions { margin-top: 15px; display: flex; gap: 10px; }
+        .edit-btn { background: #f39c12; flex: 1; padding: 8px; font-size: 14px; }
+        .delete-btn { background: #e74c3c; flex: 1; padding: 8px; font-size: 14px; }
     </style>
 </head>
 <body>
+    <h1>🎵 Strezless Nexus</h1>
 
-    <h2>Music Metadata Tracker</h2>
-    <p>Organize your metadata to ensure proper royalty collection.</p>
-
-    <form id="metadataForm">
-        <label for="songTitle">Song Title:</label>
-        <input type="text" id="songTitle" required placeholder="e.g., Midnight Vibes">
-
-        <label for="isrc">ISRC (Recording Code):</label>
-        <input type="text" id="isrc" placeholder="e.g., USX2X2112345">
-
-        <label for="iswc">ISWC (Composition Code):</label>
-        <input type="text" id="iswc" placeholder="e.g., T-123.456.789-Z">
-
-        <label for="primaryArtist">Primary Artist:</label>
-        <input type="text" id="primaryArtist" required placeholder="Artist Name">
-
-        <button type="submit">Save Metadata</button>
-    </form>
-
-    <div class="saved-data" id="outputArea" style="display: none;">
-        <h3>Saved Data (Stored Locally)</h3>
-        <pre id="outputJSON"></pre>
+    <div class="export-container">
+        <h2>Distributor Export</h2>
+        <p>Download your catalog as a CSV for DistroKid, TuneCore, etc.</p>
+        <a href="/api/export" class="export-btn">Download CSV</a>
     </div>
 
+    <div class="form-container">
+        <h2 id="form-title">Add New Track</h2>
+        <form id="trackForm">
+            <div class="section-title">Basic Info</div>
+            <input type="text" id="trackTitle" placeholder="Track Title *" required>
+            <input type="text" id="artistName" placeholder="Artist Name *" required>
+
+            <div class="section-title">Identifiers</div>
+            <input type="text" id="isrc" placeholder="ISRC">
+            <input type="text" id="iswc" placeholder="ISWC">
+
+            <button type="submit" id="submitBtn">Save Track Metadata</button>
+        </form>
+    </div>
+
+    <h2>Your Catalog</h2>
+    <div id="tracks-container">Loading tracks...</div>
+
     <script>
-        // STEP 3: Handle Local Storage
-        const form = document.getElementById('metadataForm');
-        const outputArea = document.getElementById('outputArea');
-        const outputJSON = document.getElementById('outputJSON');
+        let editingId = null;
 
-        // Load saved data when the app opens
-        window.onload = () => {
-            const savedData = localStorage.getItem('musicMetadata');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                document.getElementById('songTitle').value = data.songTitle || '';
-                document.getElementById('isrc').value = data.isrc || '';
-                document.getElementById('iswc').value = data.iswc || '';
-                document.getElementById('primaryArtist').value = data.primaryArtist || '';
-                displayData(data);
+        function loadTracks() {
+            fetch('/api/tracks').then(r => r.json()).then(tracks => {
+                const container = document.getElementById('tracks-container');
+                container.innerHTML = '';
+                if (tracks.length === 0) { container.innerHTML = '<p style="text-align:center;">No tracks found yet.</p>'; return; }
+
+                tracks.reverse().forEach(track => {
+                    const card = document.createElement('div');
+                    card.className = 'track-card';
+                    card.innerHTML = `
+                        <h3>${track.trackTitle}</h3>
+                        <p><strong>Artist:</strong> ${track.artistName}</p>
+                        <p><strong>ISRC:</strong> ${track.isrc || 'N/A'} | <strong>ISWC:</strong> ${track.iswc || 'N/A'}</p>
+                        <div class="card-actions">
+                            <button class="delete-btn" data-id="${track.id}">Delete</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            });
+        }
+
+        document.getElementById('tracks-container').addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const id = e.target.getAttribute('data-id');
+                if (confirm('Delete this track?')) fetch(`/api/tracks/${id}`, { method: 'DELETE' }).then(loadTracks);
             }
-        };
-
-        // Save data when the user submits the form
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Build the object based on our Schema
-            const metadata = {
-                songTitle: document.getElementById('songTitle').value,
-                isrc: document.getElementById('isrc').value,
-                iswc: document.getElementById('iswc').value,
-                primaryArtist: document.getElementById('primaryArtist').value,
-                lastUpdated: new Date().toISOString()
-            };
-
-            // Save to browser Local Storage
-            localStorage.setItem('musicMetadata', JSON.stringify(metadata));
-            displayData(metadata);
-            alert("Metadata saved locally to your device!");
         });
 
-        function displayData(data) {
-            outputArea.style.display = 'block';
-            outputJSON.textContent = JSON.stringify(data, null, 2);
-        }
+        document.getElementById('trackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newTrack = {
+                trackTitle: document.getElementById('trackTitle').value,
+                artistName: document.getElementById('artistName').value,
+                isrc: document.getElementById('isrc').value,
+                iswc: document.getElementById('iswc').value
+            };
+
+            fetch('/api/tracks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newTrack) })
+            .then(() => {
+                document.getElementById('trackForm').reset();
+                loadTracks();
+            });
+        });
+
+        loadTracks();
     </script>
 </body>
 </html>

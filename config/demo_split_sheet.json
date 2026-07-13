@@ -1,0 +1,54 @@
+{
+  "songTitle": "Summer Vibes",
+  "composer": "Various Artists",
+  "createdAt": "2026-07-10T22:39:16.452Z",
+  "totalPercentage": 100,
+  "writers": [
+    {
+      "id": 1,
+      "name": "Writer 1",
+      "role": "Composer",
+      "percentage": 50,
+      "ipi": "00123456789",
+      "pro": "ASCAP",
+      "addedAt": "2026-07-10T22:39:16.452Z"
+    },
+    {
+      "id": 2,
+      "name": "Writer 2",
+      "role": "Lyricist",
+      "percentage": 25,
+      "ipi": "00987654321",
+      "pro": "BMI",
+      "addedAt": "2026-07-10T22:39:16.453Z"
+    },
+    {
+      "id": 3,
+      "name": "Writer 3",
+      "role": "Producer",
+      "percentage": 15,
+      "ipi": "00555555555",
+      "pro": "SESAC",
+      "addedAt": "2026-07-10T22:39:16.453Z"
+    },
+    {
+      "id": 4,
+      "name": "Writer 4",
+      "role": "Arranger",
+      "percentage": 7,
+      "ipi": "00444444444",
+      "pro": "ASCAP",
+      "addedAt": "2026-07-10T22:39:16.453Z"
+    },
+    {
+      "id": 5,
+      "name": "Writer 5",
+      "role": "Co-Composer",
+      "percentage": 3,
+      "ipi": "00333333333",
+      "pro": "BMI",
+      "addedAt": "2026-07-10T22:39:16.453Z"
+    }
+  ],
+  "isValid": true
+}

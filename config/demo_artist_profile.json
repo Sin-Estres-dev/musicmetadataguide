@@ -1,0 +1,15 @@
+{
+  "isrc": "US-ABC-21-00001",
+  "ipi": "00123456789",
+  "iswc": "T-345.246.317-1",
+  "tunecore": null,
+  "spotify": "spotify:artist:1A2B3C4D5E6F",
+  "apple": "apple-music:artist:abc123",
+  "soundcloud": "soundcloud:user123",
+  "bandcamp": "https://artist.bandcamp.com",
+  "youtube": "UCxxxxxxxxxxxxx",
+  "tidal": "tidal:artist:12345",
+  "amazonmusic": "amazon-music:artist:xyz",
+  "createdAt": "2026-07-10T22:38:57.477Z",
+  "lastUpdated": "2026-07-10T22:38:57.479Z"
+}
