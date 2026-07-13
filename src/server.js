@@ -55,25 +55,39 @@ app.get('/api/export', (req, res) => {
     const tracks = getTracks();
     if (tracks.length === 0) return res.status(404).send("No tracks to export.");
 
-    const headers = ['Track Title', 'Artist Name', 'ISRC', 'ISWC'];
+    const headers = [
+        'Track Title', 'Artist Name', 'Album Title', 'Release Date', 
+        'Genre', 'Language', 'ISRC', 'ISWC', 'Work ID',
+        'Label Name', 'Label ISNI', 'Label IPI', 'Label EIN',
+        'Songwriters', 'PRO Affiliation', 'BPM', 'Key', 'Is Explicit', 
+        'Sound Recording Copyright (P)', 'Composition Copyright (C)',
+        'License Type', 'Usage Terms / Restrictions', 'Licensing Contact'
+    ];
 
     const escapeCsv = (val) => {
-        if (!val) return '';
+        if (val === undefined || val === null) return '';
         const str = String(val);
         if (str.includes(',') || str.includes('"') || str.includes('\n')) return '"' + str.replace(/"/g, '""') + '"';
         return str;
     };
 
     const rows = tracks.map(track => {
+        const songwriters = Array.isArray(track.songwriters) ? track.songwriters.join('; ') : (track.songwriters || '');
         return [
-            escapeCsv(track.trackTitle), escapeCsv(track.artistName),
-            escapeCsv(track.isrc), escapeCsv(track.iswc)
+            escapeCsv(track.trackTitle), escapeCsv(track.artistName), escapeCsv(track.albumTitle),
+            escapeCsv(track.releaseDate), escapeCsv(track.genre), escapeCsv(track.language),
+            escapeCsv(track.isrc), escapeCsv(track.iswc), escapeCsv(track.workId),
+            escapeCsv(track.labelName), escapeCsv(track.labelISNI), escapeCsv(track.labelIPI), escapeCsv(track.labelEIN),
+            escapeCsv(songwriters), escapeCsv(track.proAffiliation),
+            escapeCsv(track.bpm), escapeCsv(track.key), escapeCsv(track.isExplicit),
+            escapeCsv(track.soundRecordingCopyrightOwner), escapeCsv(track.compositionCopyrightOwner),
+            escapeCsv(track.licenseType), escapeCsv(track.usageTerms), escapeCsv(track.licensingContact)
         ].join(',');
     });
 
     const csvContent = [headers.join(','), ...rows].join('\n');
     res.header('Content-Type', 'text/csv');
-    res.header('Content-Disposition', 'attachment; filename=strezless_nexus.csv');
+    res.header('Content-Disposition', 'attachment; filename=strezless_metadata.csv');
     res.send(csvContent);
 });
 
