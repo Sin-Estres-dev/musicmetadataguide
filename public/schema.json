@@ -1,0 +1,14 @@
+{
+  "songTitle": "string",
+  "isrc": "string (12 characters, e.g., USX2X2112345)",
+  "iswc": "string (11 characters, e.g., T-123.456.789-Z)",
+  "primaryArtist": "string",
+  "writers": [
+    {
+      "name": "string",
+      "pro": "string (ASCAP, BMI, etc.)",
+      "splitPercentage": "number (0-100)"
+    }
+  ],
+  "publisher": "string"
+}
