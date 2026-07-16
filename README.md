@@ -124,3 +124,8 @@ Independent artists often lose significant royalties because:
 ## License
 
 Unlicense - Public Domain
+
+---
+
+### 🔐 Developer Note: Gravatar Integration & API Security
+When integrating Gravatar for user authentication and profile fetching, avatar image URLs can be generated client-side using an MD5 hash of the user's email. However, fetching full profile data and managing secure authentication requires passing the Gravatar API Key securely through the Express backend. **Never expose your API key in frontend code.** Store it in a `.env` file and proxy requests via the Node.js server.
