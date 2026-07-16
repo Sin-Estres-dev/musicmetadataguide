@@ -18,6 +18,9 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
+    "@capacitor/android": "^8.4.2",
+    "@capacitor/cli": "^8.4.2",
+    "@capacitor/core": "^8.4.2",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "dotenv": "^17.4.2",
