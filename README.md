@@ -128,3 +128,57 @@ If you don't have an ISNI, you can obtain one through an official ISNI registrat
 
 ### In summary:
 While dedicated ISNI fields in music metadata are still evolving across all platforms, understanding its importance and actively seeking ways to include it (or advocating for its inclusion with your distributor) is a positive step towards ensuring your work is accurately recognized and managed in the digital music ecosystem.
+
+---
+
+## 🚀 Building a Music Metadata Integration App: What You Need
+
+### Core Metadata Fields Supported
+
+**Descriptive metadata:**
+- Track title, artist name, album/release name
+- Genre and subgenre (accurate, specific tags)
+- Release date, language, lyrics
+- Explicit content flag
+- Cover art (3000x3000px minimum, format-validated)
+
+**Identification metadata — the codes that make royalties actually flow:**
+- ISRC (International Standard Recording Code) — 12-character unique ID per recording
+- ISWC (International Standard Musical Work Code) — identifies the composition, not the recording
+- UPC/EAN — barcode for the release
+- IPI/CAE — songwriter and publisher IDs from PROs
+- IPN — performer IDs from neighboring rights CMOs
+
+### Credits and Rights Architecture
+
+Every contributor is treated as a first-class entity with:
+- Songwriters, composers, producers, performers, featured artists, remixers, engineers
+- Each with their own IPI/IPN, PRO affiliation, and split percentages
+- Split sheets locked in writing before release, with digital signatures
+- Master ownership vs. publishing ownership vs. composition ownership tracked separately
+- Featured artist formatting enforced consistently across platforms
+
+### Validation Layer
+
+Built-in pre-flight checks:
+- Spelling, punctuation, formatting rules per DSP
+- Cross-reference against authoritative databases
+- Consistency checks across an artist's catalog
+- Duplicate ISRC detection — never reuse codes across different recordings
+- Character/punctuation rules per platform (Spotify, Apple Music, YouTube Music)
+- Genre validation against each DSP's accepted taxonomy
+
+### Emerging Requirements
+
+- **AI content disclosure:** Flags AI-generated or AI-assisted tracks per RIAA/Grammys/SAG-AFTRA 2026 requirements
+- **Immutable audit trail:** Version control tracks every metadata change with who/when/why
+- **Semantic/mood tagging:** Moving beyond genre toward emotional and contextual tagging
+
+### Professional Features
+
+- Persistent catalog dashboard — every ISRC, UPC, and credit stored permanently, searchable
+- Post-release edits without full takedowns
+- Bulk operations for catalog owners managing hundreds of tracks
+- Split-sheet generation and e-signature built in
+- Export in DDEX ERN format (industry standard for delivery to DSPs)
+- Collaboration roles — label, manager, artist, producer all with scoped permissions

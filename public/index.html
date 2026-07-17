@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strezless Nexus</title>
+    <title>Strezless Nexus - Professional Metadata Manager</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1200px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
         h1, h2 { text-align: center; color: #2c3e50; }
-        .profile-section { text-align: center; margin-bottom: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-        .profile-section img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #3498db; margin-bottom: 10px; display: none;}
-        input, button { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box;}
-        button { background: #3498db; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .container { background: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .profile-section { text-align: center; border-left: 5px solid #9b59b6; }
+        .profile-section img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #9b59b6; margin-bottom: 10px; display: none; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 12px; color: white; background: #3498db; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
         button:hover { background: #2980b9; }
-        .track-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
-        .delete-btn { background: #e74c3c; padding: 8px; font-size: 14px; margin-top: 10px;}
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .btn-danger { background: #e74c3c; }
+        .btn-danger:hover { background: #c0392b; }
+        .section-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .track-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
+        .track-card h3 { margin-top: 0; color: #e67e22; }
+        .metadata-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 15px 0; }
+        .metadata-item { padding: 10px; background: #f8f9fa; border-radius: 5px; }
+        .metadata-label { font-weight: bold; font-size: 12px; color: #7f8c8d; text-transform: uppercase; }
+        .metadata-value { font-size: 14px; color: #2c3e50; margin-top: 5px; }
+        .error { color: #e74c3c; background: #fadbd8; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .success { color: #27ae60; background: #d5f4e6; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; background: #ecf0f1; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        .tab.active { background: #3498db; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body>
     <h1>🎵 Strezless Nexus</h1>
+    <p style="text-align: center; color: #7f8c8d;">Professional Metadata Management for Independent Artists</p>
 
-    <div class="profile-section">
+    <div class="container profile-section">
         <h2>Artist Profile</h2>
         <img id="gravatar-img" src="" alt="Gravatar">
         <p id="gravatar-status">Enter your email to load your Gravatar</p>
@@ -27,49 +46,152 @@
         <button onclick="fetchGravatar()">Load Profile Picture</button>
     </div>
 
-    <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-        <h2>Add New Track</h2>
-        <form id="trackForm">
-            <input type="text" id="trackTitle" placeholder="Track Title *" required>
-            <input type="text" id="artistName" placeholder="Artist Name *" required>
-            <input type="text" id="isrc" placeholder="ISRC">
-            <input type="text" id="iswc" placeholder="ISWC">
-            <button type="submit">Save Track Metadata</button>
-        </form>
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('tracks')">Catalog</button>
+        <button class="tab" onclick="showTab('add-track')">Add Track</button>
+        <button class="tab" onclick="showTab('contributors')">Contributors</button>
+        <button class="tab" onclick="showTab('splits')">Split Sheets</button>
     </div>
 
-    <h2>Your Catalog</h2>
-    <div id="tracks-container">Loading tracks...</div>
+    <div id="tracks-tab" class="tab-content active">
+        <div class="container">
+            <h2>Your Catalog</h2>
+            <button onclick="exportCatalog()" style="margin-bottom: 15px; background: #27ae60;">Download CSV Export</button>
+            <div id="tracks-container">Loading tracks...</div>
+        </div>
+    </div>
+
+    <div id="add-track-tab" class="tab-content">
+        <div class="container">
+            <h2>Add New Track</h2>
+            <div id="message"></div>
+            <form id="trackForm">
+                <div class="section-title">Basic Information</div>
+                <input type="text" id="trackTitle" placeholder="Track Title *" required>
+                <input type="text" id="artistName" placeholder="Artist Name *" required>
+                <input type="text" id="albumTitle" placeholder="Album/Release Title">
+                <input type="date" id="releaseDate" placeholder="Release Date">
+                <input type="text" id="genre" placeholder="Genre">
+                <input type="text" id="language" placeholder="Language">
+                
+                <div class="section-title">Identification Codes</div>
+                <input type="text" id="isrc" placeholder="ISRC (e.g., USRC17607839)" pattern="[A-Z]{2}[A-Z0-9]{3}\d{7}">
+                <input type="text" id="iswc" placeholder="ISWC (e.g., T-123456789-0)" pattern="T-\d{9}-\d">
+                <input type="text" id="upc" placeholder="UPC/EAN (12-13 digits)" pattern="\d{12,13}">
+                <input type="text" id="ipi" placeholder="IPI/CAE Number">
+                <input type="text" id="ipn" placeholder="IPN (Performer ID)">
+                
+                <div class="section-title">Rights & Credits</div>
+                <input type="text" id="proAffiliation" placeholder="PRO Affiliation (ASCAP, BMI, SESAC, etc.)">
+                <input type="text" id="masterOwner" placeholder="Master Recording Owner">
+                <input type="text" id="publishingOwner" placeholder="Publishing Owner">
+                
+                <div class="section-title">Technical Details</div>
+                <input type="number" id="bpm" placeholder="BPM (Tempo)">
+                <input type="text" id="key" placeholder="Key (e.g., C Major, Am)">
+                <select id="explicit">
+                    <option value="">Explicit Content?</option>
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+                
+                <div class="section-title">AI Disclosure (Industry Requirement 2026+)</div>
+                <select id="aiDisclosure">
+                    <option value="none">No AI Used</option>
+                    <option value="ai-assisted">AI-Assisted (Human + AI)</option>
+                    <option value="ai-generated">Fully AI-Generated</option>
+                    <option value="ai-mastering">AI Mastering Only</option>
+                    <option value="ai-vocals">AI-Assisted Vocals</option>
+                </select>
+                
+                <input type="url" id="coverArtUrl" placeholder="Cover Art URL (3000x3000px recommended)">
+                
+                <button type="submit">Save Track Metadata</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="contributors-tab" class="tab-content">
+        <div class="container">
+            <h2>Contributors Database</h2>
+            <p style="color: #7f8c8d;">Manage your collaborators, songwriters, and producers</p>
+            <div id="contributors-container">Loading contributors...</div>
+        </div>
+    </div>
+
+    <div id="splits-tab" class="tab-content">
+        <div class="container">
+            <h2>Split Sheets</h2>
+            <p style="color: #7f8c8d;">Document ownership percentages for each track</p>
+            <div id="splits-container">Coming soon...</div>
+        </div>
+    </div>
 
     <script>
-        // --- GRAVATAR LOGIC ---
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showMessage(text, isError = false) {
+            const msg = document.getElementById('message');
+            msg.innerHTML = `<div class="${isError ? 'error' : 'success'}">${text}</div>`;
+            setTimeout(() => msg.innerHTML = '', 5000);
+        }
+
         function fetchGravatar() {
             const email = document.getElementById('userEmail').value;
             if (!email) return alert("Please enter an email!");
             
             fetch(`/api/gravatar/${encodeURIComponent(email)}`)
-                .then(res => res.json())
+                .then(r => r.json())
                 .then(data => {
                     const img = document.getElementById('gravatar-img');
                     img.src = data.avatarUrl;
                     img.style.display = 'block';
-                    document.getElementById('gravatar-status').innerText = "Profile loaded via MD5 Hash!";
+                    document.getElementById('gravatar-status').innerText = "Profile loaded!";
                 });
         }
 
-        // --- TRACKS LOGIC ---
         function loadTracks() {
             fetch('/api/tracks').then(r => r.json()).then(tracks => {
                 const container = document.getElementById('tracks-container');
                 container.innerHTML = tracks.length === 0 ? '<p style="text-align:center;">No tracks yet.</p>' : '';
+                
                 tracks.reverse().forEach(track => {
                     const card = document.createElement('div');
                     card.className = 'track-card';
                     card.innerHTML = `
                         <h3>${track.trackTitle}</h3>
-                        <p><strong>Artist:</strong> ${track.artistName}</p>
-                        <p><strong>ISRC:</strong> ${track.isrc || 'N/A'} | <strong>ISWC:</strong> ${track.iswc || 'N/A'}</p>
-                        <button class="delete-btn" onclick="deleteTrack('${track.id}')">Delete</button>
+                        <div class="metadata-grid">
+                            <div class="metadata-item">
+                                <div class="metadata-label">Artist</div>
+                                <div class="metadata-value">${track.artistName}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">ISRC</div>
+                                <div class="metadata-value">${track.isrc || 'Not Set'}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">ISWC</div>
+                                <div class="metadata-value">${track.iswc || 'Not Set'}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">Genre</div>
+                                <div class="metadata-value">${track.genre || 'Not Set'}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">AI Disclosure</div>
+                                <div class="metadata-value">${track.aiDisclosure || 'None'}</div>
+                            </div>
+                            <div class="metadata-item">
+                                <div class="metadata-label">Version</div>
+                                <div class="metadata-value">v${track.version || 1}</div>
+                            </div>
+                        </div>
+                        <button class="btn-danger" onclick="deleteTrack('${track.id}')">Delete</button>
                     `;
                     container.appendChild(card);
                 });
@@ -77,21 +199,55 @@
         }
 
         function deleteTrack(id) {
-            if (confirm('Delete this track?')) {
+            if (confirm('Delete this track? This cannot be undone.')) {
                 fetch(`/api/tracks/${id}`, { method: 'DELETE' }).then(loadTracks);
             }
         }
 
+        function exportCatalog() {
+            window.location.href = '/api/export';
+        }
+
         document.getElementById('trackForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const newTrack = {
+            const formData = {
                 trackTitle: document.getElementById('trackTitle').value,
                 artistName: document.getElementById('artistName').value,
-                isrc: document.getElementById('isrc').value,
-                iswc: document.getElementById('iswc').value
+                albumTitle: document.getElementById('albumTitle').value,
+                releaseDate: document.getElementById('releaseDate').value,
+                genre: document.getElementById('genre').value,
+                language: document.getElementById('language').value,
+                isrc: document.getElementById('isrc').value.toUpperCase(),
+                iswc: document.getElementById('iswc').value.toUpperCase(),
+                upc: document.getElementById('upc').value,
+                ipi: document.getElementById('ipi').value,
+                ipn: document.getElementById('ipn').value,
+                proAffiliation: document.getElementById('proAffiliation').value,
+                masterOwner: document.getElementById('masterOwner').value,
+                publishingOwner: document.getElementById('publishingOwner').value,
+                bpm: document.getElementById('bpm').value,
+                key: document.getElementById('key').value,
+                explicit: document.getElementById('explicit').value,
+                aiDisclosure: document.getElementById('aiDisclosure').value,
+                coverArtUrl: document.getElementById('coverArtUrl').value
             };
-            fetch('/api/tracks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newTrack) })
-            .then(() => { document.getElementById('trackForm').reset(); loadTracks(); });
+
+            fetch('/api/tracks', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(formData) 
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.errors) {
+                    showMessage(data.errors.join('<br>'), true);
+                } else {
+                    showMessage('Track saved successfully!');
+                    document.getElementById('trackForm').reset();
+                    loadTracks();
+                    showTab('tracks');
+                }
+            });
         });
 
         loadTracks();
