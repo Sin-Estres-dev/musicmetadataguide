@@ -1,184 +1,106 @@
-strezless-musick-rags-to-riches-template
-
-The template repository for the Strezless Musick rags to riches course on Learning Lab. In the heart of his journey, Omar Orrantia, known to his growing fanbase as Sin Estres, embarked on an ambitious venture to start a new music label, armed not with formal education but with a treasure trove of life experiences and a passion for storytelling through melody. At just fourteen, following the heartbreaking loss of his mother, he found himself spiraling into a deep depression, grappling with a profound sense of loss and confusion that threatened to consume him. Yet, out of that darkness emerged a fierce determination to transform his pain into a source of inspiration for others. Through countless hours of reading and self-reflection, Omar discovered that music could be a powerful vehicle for healing, both for himself and for those who resonate with his story. His artistic journey is a testament to resilience, showcasing how one can channel personal hardships into creative expression. By sharing his struggles with mental health, loss, and the pursuit of purpose, Sin Estres aspires to touch the lives of at least one person out there who might need to hear that they are not alone. In a world that often feels isolating, Omar hopes to ignite a spark of hope through his music, proving that even in the depths of despair, there is always a way to rise and inspire others to do the same.
-
 # Music Metadata Guide for Independent Artists
 
-## Introduction
 Welcome to the definitive guide on music metadata for independent artists. This resource aims to help you properly document your music so you can maximize your discoverability, ensure proper royalty collection, and avoid the dreaded "black box" where unclaimed funds disappear.
 
-As an independent artist, your metadata is your digital footprint—it's how streaming platforms, collection societies, and fans identify and find your work. Getting this right from the start can make a significant difference in your career trajectory.
+As an independent artist, your metadata is your digital footprint. Getting this right from the start can make a significant difference in your career trajectory.
 
 ## Why Metadata Matters
-- **Royalty Collection:** Ensures your earnings reach you instead of ending up in the "black box" of unclaimed royalties
-- **Discoverability:** Makes your music easier to find through search and recommendation algorithms
-- **Professional Presentation:** Provides a consistent, polished experience for listeners across platforms
-- **Rights Protection:** Properly documents your ownership and creative contributions
+* **Royalty Collection:** Ensures your earnings reach you instead of ending up in unclaimed royalty pools.
+* **Discoverability:** Makes your music easier to find through search and recommendation algorithms.
+* **Professional Presentation:** Provides a consistent, polished experience for listeners across platforms.
+* **Rights Protection:** Properly documents your ownership and creative contributions.
+
+---
 
 ## Essential Metadata Fields
 
 ### Basic Track Information
-- **Track Title:** Use consistent capitalization and spelling
-- **Artist Name(s):** Include all contributing artists
-- **Album/Release Title:** Match exactly across all platforms
-- **Release Date:** Use YYYY-MM-DD format
-- **Genre(s):** Be specific but relevant
-- **Language:** Specify the language of vocals
+* **Track Title:** Use consistent capitalization and spelling.
+* **Artist Name(s):** Include all contributing artists.
+* **Album/Release Title:** Match exactly across all platforms.
+* **Release Date:** Use `YYYY-MM-DD` format.
+* **Genre(s):** Be specific but relevant.
+* **Language:** Specify the language of vocals.
 
 ### Identifiers
-- **ISRC (International Standard Recording Code):** Unique identifier for each recording
-- **UPC/EAN (Universal Product Code):** Identifies your release as a whole
-- **ISWC (International Standard Musical Work Code):** Identifies the underlying composition
+* **ISRC:** Unique identifier for each specific *recording*.
+* **UPC/EAN:** Barcode that identifies your *release* as a whole.
+* **ISWC:** Identifies the underlying *composition*.
 
 ### Rights Management
-- **Songwriter(s):** Full legal names of all writers
-- **Publisher(s):** Publishing company information
-- **Producer(s):** Production credits
-- **PRO Affiliation:** Your Performance Rights Organization (ASCAP, BMI, SESAC, etc.)
-- **Split Sheets:** Documentation of ownership percentages
+* **Songwriter(s) & Publisher(s):** Full legal names and company info.
+* **PRO Affiliation:** Your Performance Rights Organization (ASCAP, BMI, SESAC, etc.).
+* **Split Sheets:** Documentation of ownership percentages.
 
-### Technical Information
-- **BPM:** Tempo information
-- **Key:** Musical key
-- **Explicit Content:** Yes/No designation
-- **Sound Recording Copyright Owner:** Usually "℗ [Year] [Record Label/Artist Name]"
-- **Composition Copyright Owner:** Usually "© [Year] [Publisher/Writer Name]"
+### Technical & Copyright Information
+* **BPM & Key:** Tempo and musical key.
+* **Explicit Content:** Yes/No designation.
+* **Sound Recording Copyright (℗):** Usually "℗ [Year] [Record Label/Artist Name]"
+* **Composition Copyright (©):** Usually "© [Year] [Publisher/Writer Name]"
+
+---
+
+## Adding Your ISNI to Music Metadata
+An **International Standard Name Identifier (ISNI)** is a unique digital ID for creators. It helps distinguish you from other artists with similar names.
+
+**Why include it?**
+* Provides unambiguous identification.
+* Ensures accurate crediting across databases.
+* Demonstrates adherence to industry best practices.
+
+*Note: Check with your specific distributor on where to input your ISNI, as dedicated fields are still evolving across platforms.*
+
+---
 
 ## Platforms & Resources
 
 ### Distribution Services
-- **DistroKid:** Allows detailed metadata input, fast distribution
-- **TuneCore:** Comprehensive metadata fields, strong accounting features
-- **CD Baby:** User-friendly interface, established reputation
-- **Amuse:** Free tier available, mobile-first approach
-- **UnitedMasters:** Strong marketing tools alongside distribution
-
-### Metadata Management Tools
-- **Soundcharts:** Monitor your music performance across platforms
-- **Songtradr:** Metadata enhancement and music licensing
-- **VEVA Sound:** Professional metadata capture and management
+* **DistroKid:** Detailed metadata input, fast distribution.
+* **TuneCore:** Comprehensive metadata fields, strong accounting.
+* **CD Baby:** User-friendly interface, established reputation.
+* **Amuse:** Free tier available, mobile-first approach.
+* **UnitedMasters:** Strong marketing tools alongside distribution.
 
 ### PROs & Collection Societies
-- **US:** ASCAP, BMI, SESAC
-- **UK:** PRS for Music
-- **Canada:** SOCAN
-- **Australia:** APRA AMCOS
-- **International:** CISAC directory of worldwide societies
+* **US:** ASCAP, BMI, SESAC
+* **UK:** PRS for Music
+* **Canada:** SOCAN
+* **Australia:** APRA AMCOS
+* **International:** [CISAC directory](https://www.cisac.org/)
 
-### Royalty Collection
-- **SoundExchange:** Collects digital performance royalties in the US
-- **Music Reports:** Royalty administration and claiming service
-- **Kobalt:** Publishing administration with strong technology focus
-- **Songtrust:** Global royalty collection for indie artists
+---
 
-## Best Practices
-- **Be Consistent:** Use identical metadata across all platforms
-- **Register Early:** Join your local PRO before releasing music
-- **Document Everything:** Keep records of all collaborators and agreements
-- **Use Templates:** Create metadata templates for your releases
-- **Verify Before Release:** Double-check all information prior to distribution
-- **Monitor Your Catalog:** Regularly check for missing royalties or metadata issues
-- **Learn Industry Standards:** Follow DDEX standards when possible
+## Best Practices & Common Pitfalls
 
-## Common Pitfalls to Avoid
-- Inconsistent artist name spelling across platforms
-- Missing or incomplete songwriter information
-- Failure to register works with PROs
-- Overlooking international collection opportunities
-- Using temporary or placeholder metadata
-- Ignoring administrative aspects of music publishing
-- Not documenting collaboration splits before release
+**Do:**
+* Be consistent with spelling across all platforms.
+* Register with your local PRO *before* releasing music.
+* Document all collaboration splits in writing before release.
 
-## Future-Proofing Your Catalog
-- Keep a master spreadsheet of all your metadata
-- Back up all agreements and documentation
-- Stay informed about industry metadata standards
-- Consider blockchain and emerging technologies for rights management
-- Document your studio setup and recording processes
+**Avoid:**
+* Inconsistent artist name spelling.
+* Missing songwriter information.
+* Using temporary or placeholder metadata.
+* Ignoring administrative aspects of music publishing.
+
+---
+
+## Future Project: Music Metadata Integration App
+*We are currently developing a comprehensive Metadata Integration App. Core features will include:*
+* **Validation Layer:** Pre-flight checks for DSP formatting, duplicate ISRC detection, and genre validation.
+* **Credits Architecture:** First-class entity tracking for all contributors with IPI/IPN and split percentages.
+* **Professional Features:** Persistent catalog dashboard, bulk operations, DDEX ERN export, and built-in split-sheet e-signatures.
+* **Emerging Tech:** AI content disclosure flags and immutable audit trails.
+
+*(See `APP_SPECS.md` for full technical requirements).*
+
+---
 
 ## Connect With The Community
-Have questions? Join our Discord community of independent artists sharing knowledge about metadata best practices. Visit discord.link/indiemetadata to connect!
+Have questions? Join our Discord community of independent artists sharing knowledge about metadata best practices. 
+* **Discord:** [Join the Indie Metadata Community](https://discord.gg/your-actual-invite-link) *(Update this link!)*
 
-*This guide is maintained by an independent artist for the community. Last updated: April 2025. Contributions welcome at github.com/musicmetadataguide*
+## About the Creator
+This guide is maintained by **Omar Orrantia (Sin Estres)**. At just fourteen, following the loss of his mother, Omar channelled his grief into music. His artistic journey is a testament to resilience, showcasing how one can channel personal hardships into creative expression. He created this guide to help other independent artists navigate the business side of music so they can focus on the art.
 
----
-
-# Adding Your ISNI to Music Metadata: Why It Matters
-
-As an independent artist, ensuring your music metadata is accurate and comprehensive is crucial for proper crediting and potential royalty collection. One key piece of information you should consider adding, if you have one, is your International Standard Name Identifier (ISNI).
-
-### What is an ISNI?
-Think of an ISNI as a unique digital ID for creators and rights holders in the music industry (and beyond!). It helps distinguish you from other artists with similar names and ensures your contributions are correctly attributed to you across various databases and platforms.
-
-### Why include your ISNI in your music metadata?
-- **Unique Identification:** It provides a clear and unambiguous way to identify you as a creator.
-- **Accurate Crediting:** Helps ensure you receive proper credit for your work as a performer, songwriter, or producer.
-- **Streamlined Royalty Collection:** While not directly a royalty collection tool, accurate identification can contribute to smoother rights management.
-- **Professional Standard:** Including an ISNI demonstrates attention to detail and adherence to industry best practices.
-
-### Where can you include your ISNI?
-While not all metadata fields in distribution platforms currently have a dedicated "ISNI" field, here are some places you might be able to include it or discuss its inclusion with your distributor:
-- **Artist Name Field:** If there's no specific ISNI field, and if it's permitted by the platform's guidelines, you could append your ISNI to your artist name (e.g., "Your Artist Name (ISNI: 0000-0000-0000-0000)"). However, always check the platform's guidelines first as this might not be the intended use of the artist name field.
-- **Contributor/Composer/Writer Fields:** Some platforms allow you to specify roles and provide identifiers for contributors. If an ISNI field is available for these roles, be sure to include it.
-- **Notes or Comments Section:** Some platforms might have a general notes or comments section where you could include your ISNI for reference.
-- **Communicate with your Distributor:** The best approach is to inquire with your music distributor about whether they have a specific field for ISNI or if they have recommendations on where to include it in your metadata.
-
-### How to get an ISNI:
-If you don't have an ISNI, you can obtain one through an official ISNI registration agency. Some platforms, like Sound Credit, may also offer ISNI registration services.
-
-### In summary:
-While dedicated ISNI fields in music metadata are still evolving across all platforms, understanding its importance and actively seeking ways to include it (or advocating for its inclusion with your distributor) is a positive step towards ensuring your work is accurately recognized and managed in the digital music ecosystem.
-
----
-
-## 🚀 Building a Music Metadata Integration App: What You Need
-
-### Core Metadata Fields Supported
-
-**Descriptive metadata:**
-- Track title, artist name, album/release name
-- Genre and subgenre (accurate, specific tags)
-- Release date, language, lyrics
-- Explicit content flag
-- Cover art (3000x3000px minimum, format-validated)
-
-**Identification metadata — the codes that make royalties actually flow:**
-- ISRC (International Standard Recording Code) — 12-character unique ID per recording
-- ISWC (International Standard Musical Work Code) — identifies the composition, not the recording
-- UPC/EAN — barcode for the release
-- IPI/CAE — songwriter and publisher IDs from PROs
-- IPN — performer IDs from neighboring rights CMOs
-
-### Credits and Rights Architecture
-
-Every contributor is treated as a first-class entity with:
-- Songwriters, composers, producers, performers, featured artists, remixers, engineers
-- Each with their own IPI/IPN, PRO affiliation, and split percentages
-- Split sheets locked in writing before release, with digital signatures
-- Master ownership vs. publishing ownership vs. composition ownership tracked separately
-- Featured artist formatting enforced consistently across platforms
-
-### Validation Layer
-
-Built-in pre-flight checks:
-- Spelling, punctuation, formatting rules per DSP
-- Cross-reference against authoritative databases
-- Consistency checks across an artist's catalog
-- Duplicate ISRC detection — never reuse codes across different recordings
-- Character/punctuation rules per platform (Spotify, Apple Music, YouTube Music)
-- Genre validation against each DSP's accepted taxonomy
-
-### Emerging Requirements
-
-- **AI content disclosure:** Flags AI-generated or AI-assisted tracks per RIAA/Grammys/SAG-AFTRA 2026 requirements
-- **Immutable audit trail:** Version control tracks every metadata change with who/when/why
-- **Semantic/mood tagging:** Moving beyond genre toward emotional and contextual tagging
-
-### Professional Features
-
-- Persistent catalog dashboard — every ISRC, UPC, and credit stored permanently, searchable
-- Post-release edits without full takedowns
-- Bulk operations for catalog owners managing hundreds of tracks
-- Split-sheet generation and e-signature built in
-- Export in DDEX ERN format (industry standard for delivery to DSPs)
-- Collaboration roles — label, manager, artist, producer all with scoped permissions
+*Last updated: April 2025. Contributions welcome at [github.com/Sin-Estres-dev/musicmetadataguide](https://github.com/Sin-Estres-dev/musicmetadataguide).*
